@@ -149,8 +149,8 @@ genesis hash: 0000028821cccc47b3316e7a52971328f459406bef4324e72e2f8beaf5a02e70
         genesis.hashMerkleRoot         = genesis.BuildMerkleTree();
         genesis.nVersion               = 1;
         genesis.nTime                  = 1593648000;
-        genesis.nBits                  = ;
-        genesis.nNonce                 = ;
+        genesis.nBits                  = 504365040;
+        genesis.nNonce                 = 773904;
 
 
         uint256 hashtarget = uint256().SetCompact(genesis.nBits);
@@ -255,8 +255,8 @@ public:
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime                  = 1593691200;
-        genesis.nBits                  = ;
-        genesis.nNonce                 = ;
+        genesis.nBits                  = 504365040;
+        genesis.nNonce                 = 773904;
 
         hashGenesisBlock               = genesis.GetHash();
         assert(hashGenesisBlock        == uint256("0x0"));
