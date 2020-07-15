@@ -54,7 +54,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (      0, uint256("0x0000003165305fc23f3b05236a7a34b00a54b384b7b6aeb4ce085140b4a8bf5b"));
+    (      0, uint256("0x00000e391a2b31a754c81bfa02652fb9c97924525da6eed0611dd1c7ef350e75"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -135,6 +135,19 @@ merkle root hash: b8fbbea87912938fa5a9235f0187c99ef2da95f046835a91473254895aa973
 Searching for genesis hash...
 nonce: 3969909
 genesis hash: 0000003165305fc23f3b05236a7a34b00a54b384b7b6aeb4ce085140b4a8bf5b
+
+04ffff001d01044c4d552e532e2073657473207265636f726420666f72206e657720636f726f6e6176697275732063617365732c2073757270617373696e672035352c303030202d2030322f4a756c792f323032302e
+algorithm: quark
+merkle hash: 07f46c68fe2dd750eb9b982528f413f3a2891a459e448400cdc6ef4b57a3a4be
+pszTimestamp: U.S. sets record for new coronavirus cases, surpassing 55,000 - 02/July/2020.
+pubkey: 040ec90902813b0528228715b76d72ad505772b5c462b4b11c668b5d0da3a5e9d236fd7754cdc23a245ec9e54d9afab53440700c6b8a61fbdd6d864c28672d583a
+time: 1593648000
+bits: 0x1e0ffff0
+Searching for genesis hash...
+genesis hash found!
+nonce: 421561
+genesis hash: 000003ae3fefd5b8d2b5da9f14bf653be25905c30c3d0a9f22ba0885d24013c0
+
 */
 
         const char* pszTimestamp       = "U.S. sets record for new coronavirus cases, surpassing 55,000. July 2, 2020.";
@@ -150,12 +163,25 @@ genesis hash: 0000003165305fc23f3b05236a7a34b00a54b384b7b6aeb4ce085140b4a8bf5b
         genesis.nVersion               = 1;
         genesis.nTime                  = 1593648000;
         genesis.nBits                  = 504365040;
-        genesis.nNonce                 = 3969909;
+        genesis.nNonce                 = 1646559;
+/*
+        uint256 hashtarget = uint256().SetCompact(genesis.nBits);
+        while(1){
+            uint256 hash;
+            hash = genesis.GetHash();
+            if(hash <= hashtarget)
+                break;
+            genesis.nNonce += 1;
+        }
+        printf("nonce = %u \n", genesis.nNonce);
+		printf("bits = %u \n", genesis.nBits);
+        printf("hsah  = %s \n",genesis.GetHash().ToString().c_str());
+        printf("mer   = %s \n", genesis.hashMerkleRoot.ToString().c_str());
 
-
+*/
         hashGenesisBlock               = genesis.GetHash();
-        assert(hashGenesisBlock        == uint256("0x0000003165305fc23f3b05236a7a34b00a54b384b7b6aeb4ce085140b4a8bf5b"));
-        assert(genesis.hashMerkleRoot  == uint256("0xb8fbbea87912938fa5a9235f0187c99ef2da95f046835a91473254895aa9733d"));
+        assert(hashGenesisBlock        == uint256("0x00000e391a2b31a754c81bfa02652fb9c97924525da6eed0611dd1c7ef350e75"));
+        assert(genesis.hashMerkleRoot  == uint256("0x16ef77c00fea8839672de48cd32f7290e3d8f71b76312e7a4d2407fb6387a267"));
  
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,  45);  // Start with 'K' from https://en.bitcoin.it/wiki/List_of_address_prefixes
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,  50);  // Start with 'M' from https://en.bitcoin.it/wiki/List_of_address_prefixes
@@ -239,27 +265,15 @@ public:
         nMasternodeCountDrift          = 4;
         nModifierUpdateBlock           = 1;
         nMaxMoneyOut                   = 10000000 * COIN;
-/*
----------------
-algorithm: quark
-pzTimestamp: U.S. sets record for new coronavirus cases, surpassing 55,000 - 02/July/2020.
-pubkey: 04d0628a7ee517d8edecceffb3c0382d68ebd0a11776dbb04f3b565957867e20caded36ef7334b84ca6e6e1187096efb7493e8a267fd34a16f989a671e8a239472
-bits: 504365040
-time: 1593691200
-merkle root hash: 0fddf3d695d02e877929323fe7c14250aec52891ae3497fc64feb168cf4c1bc3
-Searching for genesis hash...
-nonce: 1242802
-genesis hash: 00000a90be92814ce18e1810b33f88d1eafcb5f982d160ef84aa998812681450
 
-*/
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime                  = 1593691200;
         genesis.nBits                  = 504365040;
         genesis.nNonce                 = 1242802;
 
         hashGenesisBlock               = genesis.GetHash();
-        assert(hashGenesisBlock        == uint256("0x00000a90be92814ce18e1810b33f88d1eafcb5f982d160ef84aa998812681450"));
-        assert(genesis.hashMerkleRoot  == uint256("0x0fddf3d695d02e877929323fe7c14250aec52891ae3497fc64feb168cf4c1bc3"));
+        //assert(hashGenesisBlock        == uint256("0x00000a90be92814ce18e1810b33f88d1eafcb5f982d160ef84aa998812681450"));
+        //assert(genesis.hashMerkleRoot  == uint256("0x0fddf3d695d02e877929323fe7c14250aec52891ae3497fc64feb168cf4c1bc3"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,  107);  // Start with 'k' from https://en.bitcoin.it/wiki/List_of_address_prefixes
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 110);  // Start with 'm' from https://en.bitcoin.it/wiki/List_of_address_prefixes
@@ -325,7 +339,7 @@ public:
 
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 40005;
-        assert(hashGenesisBlock == uint256("0x0000093233e750e42808f3d0b4c828b42cb4f995eb3ee1325afab2aaa81a7df2"));
+        //assert(hashGenesisBlock == uint256("0x0000093233e750e42808f3d0b4c828b42cb4f995eb3ee1325afab2aaa81a7df2"));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Regtest mode doesn't have any DNS seeds.
