@@ -1300,9 +1300,9 @@ void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const
 
             for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
                 bool found = false;
-                if (nCoinType == ONLY_NOT10000IFMN) {
+                if (nCoinType == ONLY_NOT5000IFMN) {
                     found = !(fMasterNode && pcoin->vout[i].nValue == MASTERNODE_COLLATERAL * COIN);
-                } if (nCoinType == ONLY_10000) {
+                } if (nCoinType == ONLY_5000) {
                     found = pcoin->vout[i].nValue == MASTERNODE_COLLATERAL * COIN;
                 } else {
                     found = true;
@@ -1317,7 +1317,7 @@ void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const
                 if (mine == ISMINE_WATCH_ONLY)
                     continue;
 
-                if (IsLockedCoin((*it).first, i) && nCoinType != ONLY_10000)
+                if (IsLockedCoin((*it).first, i) && nCoinType != ONLY_5000)
                     continue;
                 if (pcoin->vout[i].nValue <= 0 && !fIncludeZeroValue)
                     continue;

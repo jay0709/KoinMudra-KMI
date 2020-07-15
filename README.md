@@ -9,10 +9,10 @@ Block time | 1 minute
 Maximum supply | 10,000,000 (10 million) KMI
 Consensus mechanism | Proof-of-Stake
 Algorithm | Quark
-Collateral | 10,000 KMI
+Collateral | 5,000 KMI
 Features | SwiftTX, budget, treasury and masternode governance is enabled
-P2P Port | 30009
-RPC Port | 30008
+P2P Port | 40009
+RPC Port | 40008
 
 ### Reward Schema
 
